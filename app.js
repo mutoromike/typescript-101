@@ -1,35 +1,24 @@
-// UNION TYPES
-// This gives flexibility when a function nedds to accept various types
-// e.g. numbers, strings, booleans e.t.c
-// this being a union of number and string and used below
-function combine(input1, input2, resultConversion) {
-    var results;
-    if (typeof input1 === 'number' && typeof input2 === 'number' || resultConversion === 'as-number') {
-        results = +input1 + +input2; // +variable converts the respective variable to a number
-    }
-    else {
-        results = input1.toString() + input2.toString();
-    }
-    return results;
-    // return num1 + num2
+// Functions
+function add(n1, n2) {
+    return n1 + n2;
 }
-var CombineAges = combine(30, 28, 'as-number');
-console.log(CombineAges);
-var CombineStringAges = combine('30', '28', 'as-number');
-console.log(CombineStringAges);
-var CombineNames = combine("Alice", "Britt", 'as-text');
-console.log(CombineNames);
-// Literal types:
-// Basing on the example above, literal types are types which are based on the core types
-// but then one has a specific version. In the case below, strings.
-function combined(inputA, inputB, resultConversion) {
-    var results;
-    if (typeof inputA === 'number' && typeof inputB === 'number' || resultConversion === 'as-number') {
-        results = +inputA + +inputB; // +variable converts the respective variable to a number
-    }
-    else {
-        results = inputA.toString() + inputB.toString();
-    }
-    return results;
-    // return num1 + num2
+function printRes(num) {
+    console.log("Result is: " + num);
 }
+printRes(add(20, 30));
+var combineValues;
+// This tells TS that combineValues stores a function that returns a number
+// and also always specify the variable that the respective function takes,
+// in this case, 2 numbers.
+combineValues = add; // this won't yield an error
+// combineValues = printRes // this yields an error
+console.log(combineValues(8, 9));
+// you can also pass a function to a function
+function functionHandler(a, b, c) {
+    var result = a + b;
+    c(result);
+}
+functionHandler(5, 10, function (result) {
+    console.log(result);
+});
+// Void means the function is not returning anything
