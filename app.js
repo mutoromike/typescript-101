@@ -1,3 +1,4 @@
+"use strict";
 // Unknown type: this is different from the any type. 
 var userInput;
 var userName;
